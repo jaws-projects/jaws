@@ -12,3 +12,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  thymeleaf:
+    prefix: classpath:/static/templates
+    suffix: .html
+    cache: false #수정 내용이 바로 반영되도록 캐시 비활성 (운영에서는 true)
+    check-template-location: false
+    mode: HTML
+    view-names: /html/*
+
+
