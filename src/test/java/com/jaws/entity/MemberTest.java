@@ -9,12 +9,12 @@ public class MemberTest {
     @Test
     void memberTest() throws Exception {
         //given
-        Member member1 = new Member("test@email.com", "승호");
+        Member member = new Member("test@email.com", "승호");
 
         //when
-        member1.updateNickname("변경된 승호");
+        member.updateNickname("변경된 승호");
 
         //then
-        Assertions.assertThat(member1.getNickname()).isEqualTo("변경된 승호");
+        Assertions.assertThat(member.getNickname()).isEqualTo("변경된 승호");
     }
 }
