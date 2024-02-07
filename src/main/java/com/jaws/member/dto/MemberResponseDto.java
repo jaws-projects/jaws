@@ -20,6 +20,7 @@ public class MemberResponseDto {
         this.email = member.getEmail();
         this.nickname = member.getNickname();
 
-        this.studies = member.getStudies().stream().map(Study::getId).toList();
+        this.studies = member.getStudies().stream()
+                .map(Study::getId).toList();
     }
 }
