@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<th:block layout:fragment="script">
+    <!--    <script th:src="@{/js/contentPage.js}"></script>-->
+</th:block>
+
+<div layout:fragment="content">
+    <div class="mt-5">
+        <h2 class="text-center mb-4">모집 중인 스터디</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- 카드 1 -->
+            <div class="col">
+                <div class="card" data-bs-toggle="modal" data-bs-target="#studyModal1">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-person"></i> 스터디 개설자 닉네임 1</h5>
+                        <p class="card-text"><i class="bi bi-journal"></i> 스터디 제목 1</p>
+                        <p class="card-text"><i class="bi bi-geo-alt"></i> 장소: 스터디 장소 1</p>
+                        <p class="card-text"><i class="bi bi-person-plus"></i> 최대 인원: 10명</p>
+                        <span class="badge bg-primary"><i class="bi bi-laptop"></i> 웹 개발</span>
+                        <span class="badge bg-secondary"><i class="bi bi-bar-chart-line"></i> 데이터 과학</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 2 -->
+            <div class="col">
+                <div class="card" data-bs-toggle="modal" data-bs-target="#studyModal2">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-person"></i> 스터디 개설자 닉네임 2</h5>
+                        <p class="card-text"><i class="bi bi-journal"></i> 스터디 제목 2</p>
+                        <p class="card-text"><i class="bi bi-geo-alt"></i> 장소: 스터디 장소 2</p>
+                        <p class="card-text"><i class="bi bi-person-plus"></i> 최대 인원: 8명</p>
+                        <span class="badge bg-warning text-dark"><i class="bi bi-palette"></i> 디자인</span>
+                        <span class="badge bg-success"><i class="bi bi-gear"></i> 머신러닝</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 3 -->
+            <div class="col">
+                <div class="card" data-bs-toggle="modal" data-bs-target="#studyModal3">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-person"></i> 스터디 개설자 닉네임 3</h5>
+                        <p class="card-text"><i class="bi bi-journal"></i> 스터디 제목 3</p>
+                        <p class="card-text"><i class="bi bi-geo-alt"></i> 장소: 스터디 장소 3</p>
+                        <p class="card-text"><i class="bi bi-person-plus"></i> 최대 인원: 12명</p>
+                        <span class="badge bg-danger"><i class="bi bi-joystick"></i> 게임 개발</span>
+                        <span class="badge bg-info"><i class="bi bi-cloud"></i> 클라우드 컴퓨팅</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 추가 카드들을 이어서 작성하면 됩니다. -->
+        </div>
+    </div>
+</div>
+</html>

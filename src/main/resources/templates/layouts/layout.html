@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/header :: header"></head>
+
+<th:block layout:fragment="script"></th:block>
+
+<body class="container">
+<!-- [bodyHeader] 영역 시작 -->
+<header th:replace="fragments/bodyHeader :: bodyHeader"></header>
+<!-- [bodyHeader] 영역 끝 -->
+
+<!-- [content] 영역 시작 -->
+<div layout:fragment="content"></div>
+<!-- [content] 영역 끝 -->
+
+<!-- [footer] 영역 시작 -->
+<footer th:replace="fragments/footer :: footer"></footer>
+<!-- [footer] 영역 끝 -->
+</body>
+</html>
