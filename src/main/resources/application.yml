@@ -19,4 +19,9 @@ spring:
     check-template-location: false
     mode: HTML
 
-
+# JWT properties
+jwt:
+  key: jawsProjectMadeBySeungHoAndKyungHyun
+  issuer: jaws
+  accessTokenExpiration: 60000
+  refreshTokenExpiration: 300000
