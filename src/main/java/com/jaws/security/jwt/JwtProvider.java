@@ -1,5 +1,6 @@
 package com.jaws.security.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ public class JwtProvider {
     private Long refreshTokenExpiration;
 
     private final SecretKey secretKey = Keys.hmacShaKeyFor(customKey.getBytes());
+    private final String E_MAIL = "email";
 
     public String generateAccessToken(String email) {
         String token = createToken(email, accessTokenExpiration);
@@ -46,12 +48,26 @@ public class JwtProvider {
         Date currentDate = new Date();
         Date expirationDate = new Date(currentDate.getTime() + expiration);
 
-        return Jwts.builder()
-                .claim("email", email)
+        Claims claims = Jwts.claims()
+                .add(E_MAIL, email)
                 .issuer(issuer)
                 .issuedAt(currentDate)
                 .expiration(expirationDate)
+                .build();
+
+        return Jwts.builder()
+                .claims(claims)
                 .signWith(secretKey)
                 .compact();
+    }
+
+    private String getUsernameFromToken(String token) {
+        return Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get(E_MAIL)
+                .toString();
     }
 }

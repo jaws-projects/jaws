@@ -1,7 +1,9 @@
 package com.jaws.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.crypto.SecretKey;
@@ -9,30 +11,67 @@ import java.util.Date;
 
 public class JwtAccessTokenTest {
 
+    private final String customKey = "jawsProjectMadeBySeungHoAndKyungHyun";
+    private final String ISSUER = "jaws";
+    private final SecretKey secretKey = Keys.hmacShaKeyFor(customKey.getBytes());
+    private final String E_MAIL = "email";
+    private final Long EXPIRATION = 60000L;
+
     @Test
     void accessToken() throws Exception {
         //given
         String email = "test@email.com";
-        String issuer = "jaws";
-
-        long expiration = 60000L;
-
-        Date currentDate = new Date();
-        Date expirationDate = new Date(currentDate.getTime() + expiration);
-
-        String customKey = "jawsProjectMadeBySeungHoAndKyungHyun";
-        SecretKey secretKey = Keys.hmacShaKeyFor(customKey.getBytes());
 
         //when
-        String token = Jwts.builder()
-                .claim("email", email)
-                .issuer(issuer)
-                .issuedAt(currentDate)
-                .expiration(expirationDate)
-                .signWith(secretKey)
-                .compact();
+        Claims claims = createClaims(email);
+        String token = createToken(claims);
 
         //then
         System.out.println("token = " + token);
+    }
+
+    @Test
+    void findEmail() throws Exception {
+        //given
+        String email = "test@email.com";
+
+        Claims claims = createClaims(email);
+        String token = createToken(claims);
+
+        //when
+        String emailFromToken = getEmailFromToken(token);
+
+        //then
+        Assertions.assertThat(emailFromToken).isEqualTo(email);
+    }
+
+    private String createToken(Claims claims) {
+        return Jwts.builder()
+                .claims(claims)
+                .signWith(secretKey)
+                .compact();
+    }
+
+    private Claims createClaims(String email) {
+
+        Date currentDate = new Date();
+        Date expirationDate = new Date(currentDate.getTime() + EXPIRATION);
+
+        return Jwts.claims()
+                .add(E_MAIL, email)
+                .issuer(ISSUER)
+                .issuedAt(currentDate)
+                .expiration(expirationDate)
+                .build();
+    }
+
+    private String getEmailFromToken(String token) {
+        return Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get(E_MAIL)
+                .toString();
     }
 }
