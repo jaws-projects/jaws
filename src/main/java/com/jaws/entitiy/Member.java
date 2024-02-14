@@ -41,7 +41,11 @@ public class Member extends TimeStamped {
         this.nickname = nickname;
     }
 
+    public void addStudy(Study study) {
+        this.studies.add(study);
+    }
+
     public void removeStudy(Study study) {
-        studies.remove(study);
+        this.studies.remove(study);
     }
 }

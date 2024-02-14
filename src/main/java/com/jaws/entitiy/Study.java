@@ -30,7 +30,7 @@ public class Study extends TimeStamped {
     // 생성 및 연관관계 메서드
     public Study(Member member) {
         this.member = member;
-        member.getStudies().add(this);
+        member.addStudy(this);
     }
 
     public void removeStudy() {

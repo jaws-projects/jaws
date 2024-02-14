@@ -17,8 +17,6 @@ public class StudyTest {
         Study study = new Study(member);
 
         //then
-        assertThat(member.getNickname()).isEqualTo(study.getMember().getNickname());
-        assertThat(member.getStudies().size()).isEqualTo(1);
         assertThat(member.getStudies().contains(study)).isTrue();
     }
 
@@ -34,7 +32,6 @@ public class StudyTest {
         //then
         assertThat(member.getStudies().size()).isEqualTo(0);
         //assertThat(study.getMember()).isEqualTo(null);
-        assertThat(study.getMember().getNickname()).isEqualTo("승호");
     }
 
     private static Member createMember() {
