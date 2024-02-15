@@ -1,18 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 /* header.html */
 .dropdown-toggle:not(:focus) {
-  outline: 0;
+    outline: 0;
 }
 
 .text-small {
-  font-size: 85%;
+    font-size: 85%;
 }
 
 /* content */
 body {
-  font-family: "Noto Sans KR", sans-serif !important;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Noto Sans KR", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.kakaoLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
