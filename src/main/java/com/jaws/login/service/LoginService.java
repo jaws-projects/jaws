@@ -1,8 +1,7 @@
 package com.jaws.login.service;
 
-import com.jaws.login.dto.KakaoResponseToken;
-import com.jaws.login.dto.KakaoUserInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -73,17 +72,20 @@ public class LoginService {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
 
-        KakaoResponseToken token = restTemplate
+        String token = restTemplate
                 .exchange(
                         uri,
                         HttpMethod.POST,
                         httpEntity,
-                        KakaoResponseToken.class)
+                        String.class)
                 .getBody();
 
-        log.info("카카오 AccessToken = {}", token.getAccessToken());
+        JSONObject json = new JSONObject(token);
+        String accessToken = json.getString("access_token");
 
-        getUserInfo(token.getAccessToken());
+        log.info("카카오 AccessToken = {}", accessToken);
+
+        getUserInfo(accessToken);
     }
 
     private void getUserInfo(String accessToken) {
@@ -100,17 +102,19 @@ public class LoginService {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> httpEntity = new HttpEntity<>(headers);
 
-        KakaoUserInfo userInfo = restTemplate
+        String userInfo = restTemplate
                 .exchange(
                         uri,
                         HttpMethod.GET,
                         httpEntity,
-                        KakaoUserInfo.class)
+                        String.class)
                 .getBody();
 
-        String email = userInfo.getKakaoAccount().getEmail();
-        String nickname = userInfo.getKakaoAccount().getProfile().getNickname();
-        String profileImageUrl = userInfo.getKakaoAccount().getProfile().getProfileImageUrl();
+        JSONObject json = new JSONObject(userInfo);
+        String email = json.getJSONObject("kakao_account").getString("email");
+        String nickname = json.getJSONObject("kakao_account").getJSONObject("profile").getString("nickname");
+        String profileImageUrl = json.getJSONObject("kakao_account").getJSONObject("profile").getString("profile_image_url");
+
 
         log.info("카카오 유저 정보 = {} / {} / {}", email, nickname, profileImageUrl);
     }
