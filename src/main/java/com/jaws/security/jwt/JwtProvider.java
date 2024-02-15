@@ -3,6 +3,7 @@ package com.jaws.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -26,8 +27,13 @@ public class JwtProvider {
     @Value("${jwt.refreshTokenExpiration}")
     private Long refreshTokenExpiration;
 
-    private final SecretKey secretKey = Keys.hmacShaKeyFor(customKey.getBytes());
+    private SecretKey secretKey;
     private final String E_MAIL = "email";
+
+    @PostConstruct
+    protected void initSecretKey() {
+        secretKey = Keys.hmacShaKeyFor(customKey.getBytes());
+    }
 
     public String generateAccessToken(String email) {
         String token = createToken(email, accessTokenExpiration);
@@ -61,7 +67,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    private String getUsernameFromToken(String token) {
+    public String getEmailFromToken(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
