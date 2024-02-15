@@ -25,3 +25,16 @@ jwt:
   issuer: jaws
   accessTokenExpiration: 60000
   refreshTokenExpiration: 300000
+
+# Kakao Login Properties
+kakao:
+  client-id: { your Client ID }
+  client-secret: { your Client Secret }
+  redirect-uri: { your redirect Uri }
+  content-type: application/x-www-form-urlencoded;charset=utf-8
+  authorization-grant-type: authorization_code
+  #Get
+  authorization-uri: https://kauth.kakao.com/oauth/authorize
+  user-info-uri: https://kapi.kakao.com/v2/user/me
+  #Post
+  token-uri: https://kauth.kakao.com/oauth/token
