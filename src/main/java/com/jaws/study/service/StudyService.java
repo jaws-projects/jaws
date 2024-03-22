@@ -24,8 +24,8 @@ public class StudyService {
         Member member = memberRepository.findById(dto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("멤버를 찾을 수 없습니다."));
 
-        Study study = new Study(member);
-        studyRepository.save(study);
+//        Study study = new Study(member);
+//        studyRepository.save(study);
     }
 
     @Transactional
@@ -33,9 +33,9 @@ public class StudyService {
         Study study = studyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 스터디를 찾을 수 없습니다."));
 
-        study.removeStudy();
-
-        log.info("스터디 제거");
-        log.info(study.getMember().getStudies().stream().map(Study::getId).toList().toString());
+//        study.removeStudy();
+//
+//        log.info("스터디 제거");
+//        log.info(study.getOwner().getStudies().stream().map(Study::getId).toList().toString());
     }
 }

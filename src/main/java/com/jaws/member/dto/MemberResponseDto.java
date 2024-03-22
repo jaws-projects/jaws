@@ -1,7 +1,6 @@
 package com.jaws.member.dto;
 
 import com.jaws.entitiy.Member;
-import com.jaws.entitiy.Study;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +19,7 @@ public class MemberResponseDto {
         this.email = member.getEmail();
         this.nickname = member.getNickname();
 
-        this.studies = member.getStudies().stream()
-                .map(Study::getId).toList();
+//        this.studies = member.getStudies().stream()
+//                .map(Study::getId).toList();
     }
 }
