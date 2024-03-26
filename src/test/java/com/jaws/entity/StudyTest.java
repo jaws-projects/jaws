@@ -1,6 +1,5 @@
 package com.jaws.entity;
 
-import com.jaws.entitiy.Member;
 import org.junit.jupiter.api.Test;
 
 public class StudyTest {

@@ -1,6 +1,5 @@
 package com.jaws.entity;
 
-import com.jaws.entitiy.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

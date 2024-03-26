@@ -1,7 +1,7 @@
 package com.jaws.study.service;
 
-import com.jaws.entitiy.Member;
-import com.jaws.entitiy.Study;
+import com.jaws.entity.Member;
+import com.jaws.entity.Study;
 import com.jaws.member.repository.MemberRepository;
 import com.jaws.study.dto.StudyCreateDto;
 import com.jaws.study.repository.StudyRepository;

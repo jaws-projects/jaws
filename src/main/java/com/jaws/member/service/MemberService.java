@@ -1,6 +1,6 @@
 package com.jaws.member.service;
 
-import com.jaws.entitiy.Member;
+import com.jaws.entity.Member;
 import com.jaws.member.dto.MemberCreateDto;
 import com.jaws.member.dto.MemberResponseDto;
 import com.jaws.member.repository.MemberRepository;

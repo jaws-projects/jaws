@@ -1,6 +1,6 @@
 package com.jaws.member.dto;
 
-import com.jaws.entitiy.Member;
+import com.jaws.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 

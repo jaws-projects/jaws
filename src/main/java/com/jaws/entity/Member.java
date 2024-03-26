@@ -1,4 +1,4 @@
-package com.jaws.entitiy;
+package com.jaws.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
